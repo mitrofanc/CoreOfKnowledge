@@ -21,12 +21,12 @@
   тесты:
   - [src/main/java/game](./src/main/java/game) – здесь находится код игры "Ядро Знаний"
       - [game/constants](./src/main/java/game/constants) - cодержит текстовые константы для отображения сообщений
-      - [game/exceptions](./game/exceptions) - обрабатывает исключения, возноможные во время игры
-      - [game/gameplay](./game/gameplay) - основная логика игрового процесса
-      - [game/listener](./game/listener) - обработка пользовательского ввода и взаимодействие с данными
-      - [game/service](./game/service) - cервисы для управления игровым процессом и логикой взаимодействия
-      - [game/ui](./game/ui) - отображения интерфейса игры
-      - [game/wordRepo](./game/wordRepo) - репозиторий слов и терминов, используемых в игре
+      - [game/exceptions](./src/main/java/game/exceptions) - обрабатывает исключения, возноможные во время игры
+      - [game/gameplay](./src/main/java/game/gameplay) - основная логика игрового процесса
+      - [game/listener](./src/main/java/game/listener) - обработка пользовательского ввода и взаимодействие с данными
+      - [game/service](./src/main/java/game/service) - cервисы для управления игровым процессом и логикой взаимодействия
+      - [game/ui](./src/main/java/game/ui) - отображения интерфейса игры
+      - [game/wordRepo](./src/main/java/game/wordRepo) - репозиторий слов и терминов, используемых в игре
   - [src/test/](./src/test) – здесь находятся тесты для игры
 - [mvnw](./mvnw) и [mvnw.cmd](./mvnw.cmd) – скрипты maven wrapper для Unix и
   Windows, которые позволяют запускать команды maven без локальной установки
