@@ -1,0 +1,14 @@
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/Main.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/constants/ConstantsDialog.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/exceptions/GameException.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/gameplay/Game.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/listener/DataListener.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/listener/DataListenerConsole.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/service/GameService.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/service/GameServiceHangman.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/ui/UIRenderer.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/ui/UIRendererConsole.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/wordRepo/Category.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/wordRepo/Difficulty.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/wordRepo/WordData.java
+/Users/dandreev/Documents/Java/CoreOfKnowledge/src/main/java/game/wordRepo/WordRepo.java

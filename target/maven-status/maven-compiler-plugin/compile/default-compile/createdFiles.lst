@@ -1,0 +1,14 @@
+game/Main.class
+game/gameplay/Game.class
+game/ui/UIRendererConsole.class
+game/wordRepo/Difficulty.class
+game/wordRepo/WordRepo.class
+game/wordRepo/WordData.class
+game/listener/DataListenerConsole.class
+game/ui/UIRenderer.class
+game/wordRepo/Category.class
+game/listener/DataListener.class
+game/service/GameService.class
+game/service/GameServiceHangman.class
+game/exceptions/GameException.class
+game/constants/ConstantsDialog.class

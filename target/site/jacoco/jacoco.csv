@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+java,game,Main,37,0,0,0,11,0,2,0,2,0
+java,game.ui,UIRendererConsole,118,0,6,0,34,0,16,0,13,0
+java,game.wordRepo,Category,0,51,0,0,0,9,0,1,0,1
+java,game.wordRepo,WordData,0,15,0,0,0,1,0,1,0,1
+java,game.wordRepo,Difficulty,0,35,0,0,0,8,0,3,0,3
+java,game.wordRepo,WordRepo,5,488,2,4,1,14,2,6,0,5
+java,game.service,GameServiceHangman,25,108,7,13,5,20,6,12,1,7
+java,game.gameplay,Game,110,0,4,0,26,0,5,0,3,0
+java,game.exceptions,GameException,4,0,0,0,2,0,1,0,1,0
+java,game.listener,DataListenerConsole,149,0,10,0,39,0,12,0,7,0

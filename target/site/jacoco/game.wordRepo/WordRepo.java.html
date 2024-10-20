@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordRepo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java</a> &gt; <a href="index.source.html" class="el_package">game.wordRepo</a> &gt; <span class="el_source">WordRepo.java</span></div><h1>WordRepo.java</h1><pre class="source lang-java linenums">package game.wordRepo;
+
+import game.exceptions.GameException;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class WordRepo {
+<span class="fc" id="L11">    private static final SecureRandom RANDOM = new SecureRandom();</span>
+
+<span class="fc" id="L13">    private final Map&lt;String, List&lt;WordData&gt;&gt; wordMap = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L15">    public WordRepo() {</span>
+<span class="fc" id="L16">        List&lt;WordData&gt; words = List.of(</span>
+                // Базовые понятия
+                new WordData(&quot;atom&quot;,
+                        &quot;The basic unit of a chemical element.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.EASY),
+                new WordData(&quot;nucleus&quot;,
+                        &quot;The positively charged center of an atom.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.EASY),
+                new WordData(&quot;proton&quot;,
+                        &quot;Positively charged particle in the atomic nucleus.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.EASY),
+                new WordData(&quot;neutron&quot;,
+                        &quot;Neutral particle found in the nucleus of an atom.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.EASY),
+                new WordData(&quot;electron&quot;,
+                        &quot;Negatively charged particle orbiting the nucleus.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.EASY),
+                new WordData(&quot;ion&quot;,
+                        &quot;An atom with a net electric charge due to loss or gain of electrons.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;isotope&quot;,
+                        &quot;Atoms of the same element with different numbers of neutrons.&quot;,
+                        Category.BASIC_CONCEPTS,
+                        Difficulty.MEDIUM),
+
+                // Реакции и процессы
+                new WordData(&quot;fission&quot;,
+                        &quot;The process of splitting a heavy nucleus into two lighter nuclei.&quot;,
+                        Category.REACTIONS,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;fusion&quot;,
+                        &quot;The process of combining two light nuclei to form a heavier nucleus.&quot;,
+                        Category.REACTIONS,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;radioactivity&quot;,
+                        &quot;The spontaneous emission of particles or radiation from an unstable nucleus.&quot;,
+                        Category.REACTIONS,
+                        Difficulty.HARD),
+                new WordData(&quot;half-life&quot;,
+                        &quot;The time required for half of a radioactive substance to decay.&quot;,
+                        Category.REACTIONS,
+                        Difficulty.HARD),
+                new WordData(&quot;chain_reaction&quot;,
+                        &quot;A sequence of reactions where a reactive product causes additional reactions.&quot;,
+                        Category.REACTIONS,
+                        Difficulty.HARD),
+
+                // Виды распада
+                new WordData(&quot;alpha_decay&quot;,
+                        &quot;Type of radioactive decay that emits helium nuclei.&quot;,
+                        Category.DECAY,
+                        Difficulty.HARD),
+                new WordData(&quot;beta_decay&quot;,
+                        &quot;Type of radioactive decay that emits electrons or positrons.&quot;,
+                        Category.DECAY,
+                        Difficulty.HARD),
+                new WordData(&quot;gamma_radiation&quot;,
+                        &quot;High-energy electromagnetic radiation emitted by nuclear reactions.&quot;,
+                        Category.DECAY,
+                        Difficulty.HARD),
+                new WordData(&quot;positron_emission&quot;,
+                        &quot;Type of beta decay where a positron is emitted.&quot;,
+                        Category.DECAY,
+                        Difficulty.HARD),
+                new WordData(&quot;neutron_emission&quot;,
+                        &quot;Release of neutrons from the nucleus during radioactive decay.&quot;,
+                        Category.DECAY,
+                        Difficulty.HARD),
+
+                // Частицы и их свойства
+                new WordData(&quot;quark&quot;,
+                        &quot;Elementary particle that makes up protons and neutrons.&quot;,
+                        Category.PARTICLES,
+                        Difficulty.HARD),
+                new WordData(&quot;lepton&quot;,
+                        &quot;Elementary particle like an electron or neutrino.&quot;,
+                        Category.PARTICLES,
+                        Difficulty.HARD),
+                new WordData(&quot;neutrino&quot;,
+                        &quot;Very light and neutral elementary particle emitted in some radioactive decays.&quot;,
+                        Category.PARTICLES,
+                        Difficulty.HARD),
+                new WordData(&quot;gluon&quot;,
+                        &quot;Elementary particle that acts as the exchange particle for the strong force between quarks.&quot;,
+                        Category.PARTICLES,
+                        Difficulty.HARD),
+                new WordData(&quot;photon&quot;,
+                        &quot;Elementary particle representing a quantum of light or other electromagnetic radiation.&quot;,
+                        Category.PARTICLES,
+                        Difficulty.MEDIUM),
+
+                // Технологии и устройства
+                new WordData(&quot;cyclotron&quot;,
+                        &quot;Device used to accelerate charged particles using a magnetic field.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;reactor&quot;,
+                        &quot;A device used to initiate and control nuclear fission reactions.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;control_rod&quot;,
+                        &quot;Component in a nuclear reactor used to control the rate of fission.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.HARD),
+                new WordData(&quot;enrichment&quot;,
+                        &quot;The process of increasing the proportion of a particular isotope in a material.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.HARD),
+                new WordData(&quot;particle_accelerator&quot;,
+                        &quot;A machine that accelerates atomic or subatomic particles to high speeds.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.HARD),
+                new WordData(&quot;tokamak&quot;,
+                        &quot;A device that uses magnetic fields to confine plasma in nuclear fusion research.&quot;,
+                        Category.TECHNOLOGY,
+                        Difficulty.HARD),
+
+                // Исторические события и объекты
+                new WordData(&quot;chernobyl&quot;,
+                        &quot;Site of the most infamous nuclear disaster in 1986.&quot;,
+                        Category.HISTORY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;hiroshima&quot;,
+                        &quot;City in Japan where the first atomic bomb was dropped in 1945.&quot;,
+                        Category.HISTORY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;trinity_test&quot;,
+                        &quot;The first detonation of a nuclear device by the United States in 1945.&quot;,
+                        Category.HISTORY,
+                        Difficulty.HARD),
+                new WordData(&quot;manhattan_project&quot;,
+                        &quot;Research project that developed the first nuclear weapons during World War II.&quot;,
+                        Category.HISTORY,
+                        Difficulty.HARD),
+                new WordData(&quot;fukushima&quot;,
+                        &quot;Nuclear disaster that occurred in Japan in 2011 following an earthquake and tsunami.&quot;,
+                        Category.HISTORY,
+                        Difficulty.HARD),
+
+                // Экологические аспекты и безопасность
+                new WordData(&quot;nuclear_waste&quot;,
+                        &quot;Radioactive materials remaining after nuclear reactions.&quot;,
+                        Category.ENVIRONMENT,
+                        Difficulty.HARD),
+                new WordData(&quot;decommissioning&quot;,
+                        &quot;The process of safely closing and dismantling a nuclear facility.&quot;,
+                        Category.ENVIRONMENT,
+                        Difficulty.HARD),
+                new WordData(&quot;contamination&quot;,
+                        &quot;Presence of radioactive substances in the environment.&quot;,
+                        Category.ENVIRONMENT,
+                        Difficulty.HARD),
+                new WordData(&quot;radiation_shielding&quot;,
+                        &quot;Materials or devices used to protect against harmful radiation.&quot;,
+                        Category.SAFETY,
+                        Difficulty.HARD),
+                new WordData(&quot;dosimeter&quot;,
+                        &quot;Device that measures exposure to ionizing radiation.&quot;,
+                        Category.SAFETY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;protective_suit&quot;,
+                        &quot;Clothing designed to protect the wearer from radiation exposure.&quot;,
+                        Category.SAFETY,
+                        Difficulty.MEDIUM),
+                new WordData(&quot;evacuation_protocol&quot;,
+                        &quot;A set of procedures for safely leaving a dangerous area in the event of radiation exposure.&quot;,
+                        Category.SAFETY,
+                        Difficulty.HARD),
+                new WordData(&quot;emergency_cooling&quot;,
+                        &quot;System in a nuclear reactor to prevent overheating during accidents.&quot;,
+                        Category.SAFETY,
+                        Difficulty.HARD)
+        );
+
+
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        for (WordData word : words) {</span>
+<span class="fc" id="L198">            String key = generateKey(word.category(), word.difficulty());</span>
+<span class="fc" id="L199">            wordMap.computeIfAbsent(key, k -&gt; new ArrayList&lt;&gt;()).add(word);</span>
+<span class="fc" id="L200">        }</span>
+<span class="fc" id="L201">    }</span>
+
+    public WordData getRandomWord(Category category, Difficulty difficulty) {
+<span class="fc" id="L204">        String key = generateKey(category, difficulty);</span>
+<span class="fc" id="L205">        List&lt;WordData&gt; filteredWords = wordMap.get(key);</span>
+
+<span class="pc bpc" id="L207" title="2 of 4 branches missed.">        if (filteredWords == null || filteredWords.isEmpty()) {</span>
+<span class="nc" id="L208">            throw new GameException(&quot;Can't find words for the given category and difficulty.&quot;);</span>
+        }
+
+<span class="fc" id="L211">        return filteredWords.get(RANDOM.nextInt(filteredWords.size()));</span>
+    }
+
+    private String generateKey(Category category, Difficulty difficulty) {
+<span class="fc" id="L215">        return category.toString() + &quot;_&quot; + difficulty.toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

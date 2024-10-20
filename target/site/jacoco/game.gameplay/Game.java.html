@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java</a> &gt; <a href="index.source.html" class="el_package">game.gameplay</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package game.gameplay;
+
+import game.listener.DataListener;
+import game.service.GameService;
+import game.ui.UIRenderer;
+import game.wordRepo.Category;
+import game.wordRepo.Difficulty;
+import game.wordRepo.WordData;
+import game.wordRepo.WordRepo;
+
+public class Game {
+    private final static int GET_HINT = 1;
+    private final WordRepo wordRepo;
+    private final UIRenderer uiRenderer;
+    private final DataListener dataListener;
+    private final GameService gameService;
+    private WordData word;
+
+<span class="nc" id="L19">    public Game(WordRepo wordRepo, UIRenderer uiRenderer, DataListener dataListener, GameService gameService) {</span>
+<span class="nc" id="L20">        this.wordRepo = wordRepo;</span>
+<span class="nc" id="L21">        this.uiRenderer = uiRenderer;</span>
+<span class="nc" id="L22">        this.dataListener = dataListener;</span>
+<span class="nc" id="L23">        this.gameService = gameService;</span>
+<span class="nc" id="L24">    }</span>
+
+    public void play() {
+<span class="nc" id="L27">        uiRenderer.selectCategory();</span>
+<span class="nc" id="L28">        final Category category = dataListener.getUserCategory();</span>
+<span class="nc" id="L29">        uiRenderer.selectDifficulty();</span>
+<span class="nc" id="L30">        final Difficulty difficulty = dataListener.getUserDifficulty();</span>
+<span class="nc" id="L31">        word = wordRepo.getRandomWord(category, difficulty);</span>
+<span class="nc" id="L32">        uiRenderer.outputStartCondition(0, word);</span>
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        while (gameService.isGameInProgress(word)) {</span>
+<span class="nc" id="L35">            internalGameLogic();</span>
+        }
+<span class="nc" id="L37">        uiRenderer.outputResult(gameService.isGameWin(word));</span>
+<span class="nc" id="L38">    }</span>
+
+    public void internalGameLogic() {
+<span class="nc" id="L41">        uiRenderer.partlyGuessedWord(gameService.getGuessedLetters(), word);</span>
+<span class="nc" id="L42">        uiRenderer.needOrNotHint();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (dataListener.getOrNotHint() == GET_HINT) {</span>
+<span class="nc" id="L44">            uiRenderer.outHint(word);</span>
+        }
+<span class="nc" id="L46">        uiRenderer.guessedLetter();</span>
+<span class="nc" id="L47">        final var guessedLetter = dataListener.getGuessedLetter();</span>
+<span class="nc" id="L48">        gameService.checkLetter(word, guessedLetter);</span>
+<span class="nc" id="L49">        uiRenderer.outputNumOfRemainingFails(word, gameService.getFails());</span>
+<span class="nc" id="L50">        uiRenderer.outputHangman(gameService.getStage());</span>
+<span class="nc" id="L51">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

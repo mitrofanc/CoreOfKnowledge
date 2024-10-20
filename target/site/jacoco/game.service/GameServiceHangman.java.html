@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameServiceHangman.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java</a> &gt; <a href="index.source.html" class="el_package">game.service</a> &gt; <span class="el_source">GameServiceHangman.java</span></div><h1>GameServiceHangman.java</h1><pre class="source lang-java linenums">package game.service;
+
+import game.wordRepo.Difficulty;
+import game.wordRepo.WordData;
+import java.util.HashSet;
+import java.util.Set;
+
+
+<span class="fc" id="L9">public class GameServiceHangman implements GameService {</span>
+    private final static int TWO_STAGES = 2;
+    private final static int THREE_STAGES = 3;
+<span class="fc" id="L12">    private final Set&lt;Character&gt; guessedLetters = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L13">    private int fails = 0;</span>
+<span class="fc" id="L14">    private int stage = 0;</span>
+
+    @Override
+    public boolean isWordGuessed(WordData wordData) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (char c : wordData.word().toCharArray()) {</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            if (!guessedLetters.contains(c)) {</span>
+<span class="fc" id="L20">                return false;</span>
+            }
+        }
+<span class="fc" id="L23">        return true;</span>
+    }
+
+    @Override
+    public boolean isGameInProgress(WordData word) {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (fails == word.difficulty().getMaxFails()) {</span>
+<span class="fc" id="L29">            return false;</span>
+        }
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        return !isWordGuessed(word);</span>
+    }
+
+    @Override
+    public boolean isGameWin(WordData word) {
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">        return fails &lt; word.difficulty().getMaxFails() &amp;&amp; isWordGuessed(word);</span>
+    }
+
+    public void checkLetter(WordData word, char guessedLetter) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (word.word().contains(String.valueOf(guessedLetter))) {</span>
+<span class="fc" id="L41">            guessedLetters.add(guessedLetter);</span>
+
+        } else {
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">            if (word.difficulty() == Difficulty.EASY) {</span>
+<span class="fc" id="L45">                stage++;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            } else if (word.difficulty() == Difficulty.MEDIUM) {</span>
+<span class="nc" id="L47">                stage += TWO_STAGES;</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            } else if (word.difficulty() == Difficulty.HARD) {</span>
+<span class="nc" id="L49">                stage += THREE_STAGES;</span>
+            }
+<span class="fc" id="L51">            fails++;</span>
+        }
+<span class="fc" id="L53">    }</span>
+
+    // Почему-то не видит lombok в обычном классе, поэтому сам прописал геттеры
+    @Override
+    public int getFails() {
+<span class="fc" id="L58">        return fails;</span>
+    }
+
+    @Override
+    public int getStage() {
+<span class="nc" id="L63">        return stage;</span>
+    }
+
+    @Override
+    public Set&lt;Character&gt; getGuessedLetters() {
+<span class="fc" id="L68">        return guessedLetters;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

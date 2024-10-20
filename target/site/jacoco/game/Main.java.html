@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java</a> &gt; <a href="index.source.html" class="el_package">game</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package game;
+
+import game.gameplay.Game;
+import game.listener.DataListener;
+import game.listener.DataListenerConsole;
+import game.service.GameService;
+import game.service.GameServiceHangman;
+import game.ui.UIRenderer;
+import game.ui.UIRendererConsole;
+import game.wordRepo.WordRepo;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
+
+
+<span class="nc" id="L15">@Slf4j @UtilityClass</span>
+public class Main {
+    public static void main(String[] args) {
+        try {
+<span class="nc" id="L19">            final WordRepo wordRepo = new WordRepo();</span>
+<span class="nc" id="L20">            final UIRenderer uiRenderer = new UIRendererConsole();</span>
+<span class="nc" id="L21">            final DataListener dataListener = new DataListenerConsole();</span>
+<span class="nc" id="L22">            final GameService gameService = new GameServiceHangman();</span>
+<span class="nc" id="L23">            final Game game = new Game(wordRepo, uiRenderer, dataListener, gameService);</span>
+<span class="nc" id="L24">            game.play();</span>
+<span class="nc" id="L25">        } catch (Exception e) {</span>
+<span class="nc" id="L26">            log.error(&quot;Error:&quot;, e);</span>
+<span class="nc" id="L27">        }</span>
+<span class="nc" id="L28">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
